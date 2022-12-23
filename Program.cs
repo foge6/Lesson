@@ -91,16 +91,19 @@ void Show2dArray(int[,] array)
     }
 }
 
-int[,] Change (int[,] array){
+int[,] Change (int[,] array)
+{
 int min = array[0,0];
 int mini = 0;
 int minj = 0;
-
+bool flag = false;
+while(flag==false)
+{
     for (int j= 0; j < array.GetLength (1); j++)
     {
         for (int i = 0; i <array.GetLength (0); i++)
         {
-            if ( array[j,i] < min)
+            if ( array[j,i] <= min && array[j,i] != 0)
             {
             min= array[j,i];
             mini=i;
@@ -118,9 +121,20 @@ int minj = 0;
             }
         }
     }
+    flag =true;
+    for (int j= 0; j < array.GetLength (1); j++)
+    {
+        for (int i = 0; i <array.GetLength (0); i++)
+        {
+            if ( array[j,i] == min )
+            {
+                flag = false;
+            }
+        }
+    }
+}
     return array;
 }
-
 Console.Write("Enter numb of rows: ");
 int m = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter numb of cols: ");
